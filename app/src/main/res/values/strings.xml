@@ -1,0 +1,89 @@
+<resources>
+    <string name="app_name">Health OK</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_activity_register_user">activity_register_user</string>
+    <string name="title_activity_search">Search</string>
+    <string name="title_activity_profile">Profile</string>
+    <string name="action_refresh">Refresh</string>
+    <string name="help">Help</string>
+    <string name="update">Update</string>
+    <string name="search_hint">Search Here </string>
+    <string name="search_title">Search</string>
+    <string name="prompt_family_dd">Order For</string>
+    <string-array name="spinner_string">
+
+        <item>item1</item>
+        <item>item2</item>
+        <item>3</item>
+        <item>4</item>
+
+
+    </string-array>
+
+
+    <!--  <string name="gcm_defaultSenderId">846114174530</string> -->
+
+    <string-array name="profile">
+        <item>My Profile</item>
+        <item>Track Order</item>
+        <item>My Orders</item>
+        <item>Cart</item>
+        <item>Your Offers</item>
+        <item>Logout</item>
+    </string-array>
+
+    <!-- Nav Drawer Menu Items -->
+    <string-array name="nav_drawer_items">
+        <item>Home</item>
+        <item>Find People</item>
+        <item>Photos</item>
+        <item>Communities</item>
+        <item>Pages</item>
+        <item>What\'s Hot</item>
+    </string-array>
+
+    <string name="title_activity_homepage">Homepage</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_home_page">HomePage</string>
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+    <string name="title_activity_login">Login</string>
+    <string name="title_activity_signup">Signup</string>
+    <string name="title_activity_address">Address</string>
+    <string name="title_activity_cart">Cart</string>
+    <string name="title_activity_order_address">OrderAddress</string>
+    <string name="title_activity_order_place">OrderPlace</string>
+    <string name="title_activity_camera">Camera</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="nav_menu_my_profile">My Profile</string>
+    <string name="nav_menu_book_appointment">Book Appointment</string>
+    <string name="nav_menu_my_doctors">My Doctors</string>
+    <string name="nav_menu_my_family">My Family</string>
+    <string name="nav_menu_my_orders">My Orders</string>
+    <string name="nav_menu_doctor_visit_history">Doctor Visit History</string>
+    <string name="nav_menu_reports">Reports</string>
+    <string name="nav_menu_order_medicine">Order Medicine</string>
+    <string name="nav_menu_order_test">Order Test</string>
+    <string name="nav_menu_order_ambulance">Order Ambulance</string>
+    <string name="nav_menu_home_nursing">Home Nursing</string>
+    <string name="nav_menu_logout">Logout</string>
+    <string name="nav_menu_home">Home</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="button_doctor_appointment">Doctor Appointment</string>
+    <string name="button_pathology">Pathology</string>
+    <string name="button_medicine">Medicine</string>
+    <string name="button_ambulance">Ambulance</string>
+    <string name="button_nurse">Nurse</string>
+
+</resources>

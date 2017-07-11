@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_menu_home"
+            android:icon="@drawable/fa_home"
+            android:title="@string/nav_menu_home" />
+        <item
+            android:id="@+id/nav_menu_my_profile"
+            android:icon="@drawable/fa_user"
+            android:title="@string/nav_menu_my_profile" />
+        <item
+            android:id="@+id/nav_menu_book_appointment"
+            android:icon="@drawable/fa_calendar"
+            android:title="@string/nav_menu_book_appointment" />
+        <item
+            android:id="@+id/nav_menu_my_doctors"
+            android:icon="@drawable/fa_user_md"
+            android:title="@string/nav_menu_my_doctors" />
+        <item
+            android:id="@+id/nav_menu_my_family"
+            android:icon="@drawable/fa_group"
+            android:title="@string/nav_menu_my_orders" />
+        <item
+            android:id="@+id/nav_menu_my_orders"
+            android:icon="@drawable/fa_shopping_cart"
+            android:title="@string/nav_menu_my_family" />
+        <item
+            android:id="@+id/nav_menu_doctor_visit_history"
+            android:icon="@drawable/fa_list_alt"
+            android:title="@string/nav_menu_doctor_visit_history" />
+        <item
+            android:id="@+id/nav_menu_reports"
+            android:icon="@drawable/fa_history"
+            android:title="@string/nav_menu_reports" />
+        <item
+            android:id="@+id/nav_menu_order_medicine"
+            android:icon="@drawable/fa_medikit"
+            android:title="@string/nav_menu_order_medicine" />
+        <item
+            android:id="@+id/nav_menu_order_test"
+            android:icon="@drawable/fa_list_alt"
+            android:title="@string/nav_menu_order_test" />
+        <item
+            android:id="@+id/nav_menu_order_ambulance"
+            android:icon="@drawable/fa_ambulance"
+            android:title="@string/nav_menu_order_ambulance" />
+        <item
+            android:id="@+id/nav_menu_home_nursing"
+            android:icon="@drawable/fa_stethoscope"
+            android:title="@string/nav_menu_home_nursing" />
+        <item
+            android:id="@+id/nav_menu_logout"
+            android:icon="@drawable/fa_sign_out"
+            android:title="@string/nav_menu_logout" />
+    </group>
+
+</menu>

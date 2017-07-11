@@ -1,0 +1,119 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bck1_rotated"
+    android:fillViewport="true"
+    tools:context="com.example.zues.healthok.HomeFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/welcomeTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:background="@color/bootstrap_gray_light"
+            android:gravity="center_horizontal"
+            android:padding="10dp"
+            android:text="Welcome" />
+
+        <Button
+            android:id="@+id/doctorAppointmentButton"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/welcomeTextView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:background="@null"
+            android:drawablePadding="@dimen/button_image_padding"
+            android:drawableTop="@drawable/doc"
+            android:text="@string/button_doctor_appointment" />
+
+        <View
+            android:id="@+id/anchor"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_below="@id/doctorAppointmentButton"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="90dp" />
+
+        <Button
+            android:id="@+id/pathologyButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/anchor"
+            android:layout_marginRight="45dp"
+            android:layout_toLeftOf="@+id/anchor"
+            android:background="@null"
+            android:drawablePadding="@dimen/button_image_padding"
+            android:drawableTop="@drawable/lab"
+            android:text="@string/button_pathology" />
+
+
+        <Button
+            android:id="@+id/ambulanceButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/anchor"
+            android:layout_marginLeft="35dp"
+            android:layout_toRightOf="@+id/anchor"
+            android:background="@null"
+            android:drawablePadding="@dimen/button_image_padding"
+            android:drawableTop="@drawable/ambulance"
+            android:text="@string/button_ambulance" />
+
+        <Button
+            android:id="@+id/myHealthButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/anchor"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:background="@null"
+            android:drawablePadding="@dimen/button_image_padding"
+            android:drawableTop="@drawable/userdark"
+            android:text="My Health" />
+
+        <Button
+            android:id="@+id/medicineButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/myHealthButton"
+            android:layout_marginRight="50dp"
+            android:layout_toLeftOf="@id/myHealthButton"
+            android:background="@null"
+            android:drawablePadding="@dimen/button_image_padding"
+            android:drawableTop="@drawable/medicine"
+            android:text="@string/button_medicine" />
+
+
+        <Button
+            android:id="@+id/nurseButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/myHealthButton"
+            android:layout_marginLeft="50dp"
+            android:layout_toRightOf="@+id/myHealthButton"
+            android:background="@null"
+            android:drawablePadding="@dimen/button_image_padding"
+            android:drawableTop="@drawable/nurse"
+            android:text="@string/button_nurse" />
+
+        <ImageButton
+            android:id="@+id/telephoneButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/myHealthButton"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:background="@null"
+            app:srcCompat="@drawable/call_us" />
+    </RelativeLayout>
+</ScrollView>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bck8"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <ImageView
+            android:id="@+id/camera_button"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/cameraicon"
+            android:onClick="onClickCaptuteButton"
+
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ATTACH TEST SLIP"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#A7B1FF"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:text="Upload your test slip\n to book for test"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#A7B1FF"
+                android:textSize="10dp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/captured_image"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="0.48" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.91"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="80dp"
+                android:layout_marginTop="20dp"
+                android:text="SELECT DATE OF TEST"
+
+                android:textAppearance="?android:attr/textAppearanceLarge"
+
+                android:textColor="#A7B1FF"
+                android:textSize="20dp" />
+
+            <DatePicker
+                android:id="@+id/datePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginLeft="65dp"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                android:id="@+id/drop_down_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="30dp"
+                android:height="20dp"
+                android:text="SELECT TEST"
+
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="#A7B1FF" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <Spinner
+        android:id="@+id/Test_spinner"
+        android:layout_width="206dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#638fa6"
+
+        android:clickable="true"
+        android:dropDownWidth="wrap_content"
+        android:focusable="true"
+        android:spinnerMode="dropdown" />
+
+
+    <Button
+        android:id="@+id/button2"
+        style="@android:style/Animation.Translucent"
+        android:layout_width="250dp"
+        android:layout_height="46dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:background="#62d2a9"
+        android:clickable="true"
+        android:enabled="false"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:onClick="Submit"
+        android:singleLine="true"
+        android:text="SUBMIT"
+        android:textColor="#1a1818"
+        android:textSize="28dp" />
+
+
+</LinearLayout>

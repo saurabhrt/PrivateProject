@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/dfname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="First name" />
+
+        <EditText
+            android:id="@+id/dmname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Middle name" />
+
+        <EditText
+            android:id="@+id/dlname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Last name" />
+
+        <EditText
+            android:id="@+id/dspec"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Speciality" />
+
+        <EditText
+            android:id="@+id/ddegree"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Degree" />
+
+        <EditText
+            android:id="@+id/dtiming"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Timing" />
+
+        <EditText
+            android:id="@+id/doffday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Off day" />
+
+        <EditText
+            android:id="@+id/dfees"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fees" />
+
+        <EditText
+            android:id="@+id/daddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Address" />
+
+        <EditText
+            android:id="@+id/dcityid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="City ID"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/dpincode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Pincode" />
+
+        <RadioButton
+            android:id="@+id/dvrec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Virtual receptionist" />
+
+        <RadioButton
+            android:id="@+id/dinpanel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="In Panel" />
+
+        <RadioButton
+            android:id="@+id/daenable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Appointment Enable" />
+
+        <RadioButton
+            android:id="@+id/dpcare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Post care" />
+
+        <Button
+            android:id="@+id/dsubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:onClick="adddoctor"
+            android:text="Submit" />
+    </LinearLayout>
+</ScrollView>

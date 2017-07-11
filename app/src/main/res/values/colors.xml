@@ -1,0 +1,11 @@
+<resources>
+    <color name="ColorPrimary">#FF5722</color>
+    <color name="ColorPrimaryDark">#E64A19</color>
+    <color name="black_overlay">#66000000</color>
+    <color name="colorPrimaryToolBar">#3f51b5</color>
+    <color name="buttonBlue">#C008AE9E</color>
+    <color name="textWhite">#ffffff</color>
+    <color name="buttonBlueLink">#397ab7</color>
+    <color name="black">#000000</color>
+</resources>
+
