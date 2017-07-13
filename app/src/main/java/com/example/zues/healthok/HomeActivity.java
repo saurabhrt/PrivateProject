@@ -142,6 +142,7 @@ public class HomeActivity extends AppCompatActivity
                 break;
             }
             case R.id.nav_menu_logout: {
+                swapFragment(new HomeFragment());
                 sessionManager.logoutUser();
                 break;
             }
