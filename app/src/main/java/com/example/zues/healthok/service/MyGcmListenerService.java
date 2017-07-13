@@ -60,7 +60,7 @@ public class MyGcmListenerService extends GcmListenerService {
     /**
      * Create and show a simple notification containing the received GCM message.
      *
-     * @param message GCM message received.
+     * @param //message GCM message received.
      */
 
     private void sendNotification(String title, String body) {

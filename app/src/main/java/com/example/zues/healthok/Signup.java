@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.zues.healthok.model.User;
 import com.example.zues.healthok.util.ServiceHandler;
+import com.example.zues.healthok.util.ServiceURL;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -23,7 +24,7 @@ import java.util.List;
 
 public class Signup extends Activity {
     //    private static String url="EmailRegistration/access";
-    private static String url = "users/register";
+    private static String url = ServiceURL.SignUp;
     EditText fname, lname, mail, pass, pnum, cpass;
     String firstName, lastName, email, password, phone, cpassword;
     String status = "-5";
@@ -60,9 +61,26 @@ public class Signup extends Activity {
         password = pass.getText().toString();
         cpassword = cpass.getText().toString();
         // url="signup/"+firstname+"/"+lastname+"/"+email+"/"+password+"/"+phone;
-        if (password.equals(cpassword)) {
+        if (validate())
             new Register().execute();
-        } else Toast.makeText(this, "Passwords do not match!!", Toast.LENGTH_SHORT);
+    }
+
+    public boolean validate() {
+        if (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty() || phone.isEmpty() ||
+                password.isEmpty() || cpassword.isEmpty()) {
+            Toast.makeText(this, "All fields are compulsory", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if (!password.equals(cpassword)) {
+            Toast.makeText(this, "Passwords do not match", Toast.LENGTH_LONG).show();
+            return false;
+
+        }
+        return true;
+    }
+
+    public void gotologin(View view) {
+        finish();
     }
 
     private class Register extends AsyncTask<Void, Void, Void> {

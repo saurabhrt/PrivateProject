@@ -113,8 +113,16 @@ public class Login extends AppCompatActivity {
         password = pass.getText().toString();
         sessionManager = new SessionManager(getApplicationContext());
 //        url="url"+username+"/"+password;
+        if (!validate()) return;
         new GetContacts().execute();
+    }
 
+    public boolean validate() {
+        if (username.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "All fields are compulsory", Toast.LENGTH_LONG).show();
+            return false;
+        }
+        return true;
     }
 
 
@@ -196,7 +204,6 @@ public class Login extends AppCompatActivity {
 
 //                Intent intent=new Intent(getApplicationContext(),HomePage.class);
                 finish();
-
             }
 
         }

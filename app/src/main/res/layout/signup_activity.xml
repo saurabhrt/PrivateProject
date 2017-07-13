@@ -150,6 +150,7 @@
             android:layout_marginRight="28dp"
             android:layout_marginTop="15dp"
             android:background="@color/buttonBlue"
+            android:onClick="gotologin"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="Already Have an Account - Login"

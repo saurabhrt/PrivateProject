@@ -14,7 +14,9 @@ public class UserFull {
     private int id;
     private int userId;
     private String registrationNumber;
-    private Date regstrationDate;
+    //Typing Mistake
+//    private Date regstrationDate;
+    private Date registrationDate;
     private MembershipType membershipTypeId;
     private String firstName = null;
     private String lastName = null;
@@ -81,12 +83,12 @@ public class UserFull {
         this.registrationNumber = registrationNumber;
     }
 
-    public Date getRegstrationDate() {
-        return regstrationDate;
+    public Date getRegistrationDate() {
+        return registrationDate;
     }
 
-    public void setRegstrationDate(Date regstrationDate) {
-        this.regstrationDate = regstrationDate;
+    public void setRegistrationDate(Date registrationDate) {
+        this.registrationDate = registrationDate;
     }
 
     public MembershipType getMembershipTypeId() {

@@ -12,4 +12,8 @@ public class ServiceURL {
     public static String Login = "auth/validate";
     public static String GCMRegister = "gcm/register";
     public static String Order = "order";
+
+    public static String SignUp = "users/register";
+    public static String UserDetails = "ReturnUserDetails/userDetails/";
+    public static String ChangePassword = "auth/changepassword";
 }
