@@ -90,7 +90,6 @@ public class HomeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         item.setChecked(true);
         int id = item.getItemId();
-        Log.d("HomeonClick Id=", id + "");
 
         switch (id) {
             case R.id.nav_menu_home: {

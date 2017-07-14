@@ -21,11 +21,11 @@
         <item
             android:id="@+id/nav_menu_my_family"
             android:icon="@drawable/fa_group"
-            android:title="@string/nav_menu_my_orders" />
+            android:title="@string/nav_menu_my_family" />
         <item
             android:id="@+id/nav_menu_my_orders"
             android:icon="@drawable/fa_shopping_cart"
-            android:title="@string/nav_menu_my_family" />
+            android:title="@string/nav_menu_my_orders" />
         <item
             android:id="@+id/nav_menu_doctor_visit_history"
             android:icon="@drawable/fa_list_alt"

@@ -169,9 +169,12 @@ public class MyProfileFragment extends Fragment {
             // Dismiss the progress dialog
             if (pDialog.isShowing())
                 pDialog.dismiss();
-
-            userFull = UserFull.fromJSON(jsonStr);
-            showProfile();
+            if (jsonStr.isEmpty()) {
+                Toast.makeText(homeActivity, "Unable to connect!!", Toast.LENGTH_SHORT).show();
+            } else {
+                userFull = UserFull.fromJSON(jsonStr);
+                showProfile();
+            }
 
 /*          //Server do not return any status
             if(status.equals("1"))
