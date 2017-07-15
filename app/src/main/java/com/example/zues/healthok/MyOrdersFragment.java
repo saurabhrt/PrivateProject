@@ -154,7 +154,6 @@ public class MyOrdersFragment extends Fragment {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    Log.d("***Order string***", jstr);
                     Order order = Order.fromJSON(jstr);
                     orders.add(order);
                 }
