@@ -16,4 +16,22 @@ public class ServiceURL {
     public static String SignUp = "users/register";
     public static String UserDetails = "ReturnUserDetails/userDetails/";
     public static String ChangePassword = "auth/changepassword";
+    public static String OrderDetails = "ordermanagement/getuserorders/";
+
+    /* From website
+    doctorSearchPath: "doctor/search/",
+    userAppointmentsPath: "ordermanagement/getuserappointment/",
+    doctorDetailsPath: "Doctor/",
+    placeOrderPath:  "order/",
+    authenticateUrl: "EmailRegister/Check",
+    ordersPath: "ordermanagement/getuserorders/",
+    prescriptionUploadPath: "files/uploadprescription",
+    reportsPath: "ordermanagement/getlabtests/",
+    quickRegistrationPath: "EmailRegistration/access",
+    imageDisplayPath : "files/image/",
+    authService:"auth/",
+    favDoctors: "doctor/user/",
+    guestOrderPath: "order/guestorder",
+    statPath: "stats/hit"
+*/
 }

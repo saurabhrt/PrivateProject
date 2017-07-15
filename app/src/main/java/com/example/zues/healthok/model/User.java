@@ -16,21 +16,23 @@ public class User {
     private String emailId;
     private String phone;
     private String password;
+    private String registrationNumber;
 
-    public User(int userId, String firstName, String lastName, String emailId, String phone, String password) {
+    public User() {
+    }
 
+    public User(int userId, String firstName, String lastName, String emailId, String phone, String password, String registrationNumber) {
         setUserId(userId);
         setEmailId(emailId);
         setFirstName(firstName);
         setLastName(lastName);
         setPassword(password);
         setPhone(phone);
+        setRegistrationNumber(registrationNumber);
     }
 
     public User(String jsonString) {
         try {
-
-
             JSONObject jsonObject = new JSONObject(jsonString);
             setUserId(jsonObject.getInt("userId"));
             setEmailId(jsonObject.getString("emailId"));
@@ -38,6 +40,7 @@ public class User {
             setLastName(jsonObject.getString("lastName"));
             setPassword(jsonObject.getString("password"));
             setPhone(jsonObject.getString("mobile"));
+            setRegistrationNumber("registrationNumber");
 
 
 /*
@@ -101,5 +104,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRegistrationNumber() {
+        return registrationNumber;
+    }
+
+    public void setRegistrationNumber(String registrationNumber) {
+        this.registrationNumber = registrationNumber;
     }
 }

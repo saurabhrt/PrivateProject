@@ -1,5 +1,8 @@
 package com.example.zues.healthok.model;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.util.Date;
 
 /**
@@ -18,9 +21,24 @@ public class OrderBase {
     private int imageId; // this is id of image stored in database.
     private int doctorId; // used when ordering Doctor Appointment
     private Doctor doctor;
+    private String comments; // This is entered by admin
+
+    public static OrderBase fromJSON(String jsonString) {
+        OrderBase order = null;
+        Gson gson = new GsonBuilder().setDateFormat(
+                "yyyy-MM-dd'T'HH:mm:ssZ").create();
+        try {
+            order = gson.fromJson(jsonString, OrderBase.class);
+            return order;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return order;
+
+    }
 
     public OrderBase(int userId, OrderType orderType, Date orderDate, OrderStatusType orderStatusType,
-                     Date orderCompletionDate, Date orderFulfillDate, String orderDescription) {
+                     Date orderCompletionDate, Date orderFulfillDate, String orderDescription, String comments) {
         super();
         this.userId = userId;
         this.orderType = orderType;
@@ -29,6 +47,7 @@ public class OrderBase {
         this.orderCompletionDate = orderCompletionDate;
         this.orderFulfillDate = orderFulfillDate;
         this.orderDescription = orderDescription;
+        this.comments = comments;
     }
 
 
@@ -143,5 +162,11 @@ public class OrderBase {
         this.doctorId = doctorId;
     }
 
+    public String getComments() {
+        return comments;
+    }
 
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
 }

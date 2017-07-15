@@ -28,6 +28,7 @@ public class SessionManager {
     public static final String KEY_LASTNAME = "lastName";
     public static final String KEY_MOBILE = "mobile";
     public static final String KEY_PASSWORD = "password";
+    public static final String KEY_REGISERATION_NUMBER = "reg_no";
     public static final String KEY_SENT_TOKEN_TO_SERVER = "sentTokenToServer";
     public static final String KEY_GCM_TOKEN = "gcmToken";
     // Shared Preferences
@@ -73,6 +74,7 @@ public class SessionManager {
         editor.putString(KEY_MOBILE, user.getPhone());
         editor.putString(KEY_EMAIL, user.getEmailId());
         editor.putString(KEY_PASSWORD, user.getPassword());
+        editor.putString(KEY_REGISERATION_NUMBER, user.getRegistrationNumber());
         editor.putInt(KEY_USERID, user.getUserId());
 
 
@@ -124,7 +126,7 @@ public class SessionManager {
                         , pref.getString(KEY_EMAIL, null)
                         , pref.getString(KEY_MOBILE, null)
                         , pref.getString(KEY_PASSWORD, null)
-                );
+                        , pref.getString(KEY_REGISERATION_NUMBER, null));
 
         return user;
     }
@@ -188,6 +190,7 @@ public class SessionManager {
         str += pref.getString(KEY_EMAIL, null);
         str += pref.getString(KEY_MOBILE, null);
         str += pref.getString(KEY_PASSWORD, null);
+        str += pref.getString(KEY_REGISERATION_NUMBER, null);
         Log.d("Log", str);
     }
 

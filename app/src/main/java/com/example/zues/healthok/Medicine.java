@@ -191,7 +191,7 @@ public class Medicine extends AppCompatActivity {
 
 // if picturePath is not null then an image is uploaded. Upload this and get imageId before saving Order
 
-            orderBase.setImageId(sh.uploadFile(picturePath));
+//            orderBase.setImageId(sh.uploadFile(picturePath));
 
             List<NameValuePair> params = new ArrayList<>(2);
             params.add(new BasicNameValuePair("orderDescription", orderBase.getOrderDescription()));

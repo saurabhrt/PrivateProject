@@ -95,8 +95,8 @@ public class MyProfileFragment extends Fragment {
         ((TextView) inflate.findViewById(R.id.addPhoneTextView)).setText(str);
 
 
-        //Todo: Get complete address with city from cityid
-        String address = userFull.getAddressLine1() + ", " + userFull.getAddressLine2();
+        String address = userFull.getAddressLine1() + ", " + userFull.getAddressLine2() +
+                " Gorakhpur, " + userFull.getPinCode();
         ((TextView) inflate.findViewById(R.id.addressTextView)).setText(address);
     }
 
