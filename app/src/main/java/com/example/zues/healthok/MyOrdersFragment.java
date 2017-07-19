@@ -57,6 +57,8 @@ public class MyOrdersFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         inflate = inflater.inflate(R.layout.fragment_my_orders, container, false);
+        if (orders.size() > 0)
+            showOrders();
         return inflate;
     }
 
@@ -68,14 +70,16 @@ public class MyOrdersFragment extends Fragment {
         for (int i = 0; i < orders.size(); i++) {
             final Order order = orders.get(i);
             View view = LayoutInflater.from(getContext()).inflate(R.layout.order_detail_row, null);
-            TextView ordeNumberText = view.findViewById(R.id.orderNumberText);
-            ordeNumberText.setOnClickListener(new View.OnClickListener() {
+            if (i % 2 != 0)
+                view.setBackgroundDrawable(getContext().getResources().getDrawable(R.drawable.border));
+            TextView orderNumberText = view.findViewById(R.id.orderNumberText);
+            orderNumberText.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     showOneOrder(order);
                 }
             });
-            ordeNumberText.setText("HO6588" + (5000 - 0 + order.getOrderId()));
+            orderNumberText.setText("HO6588" + (5000 - 0 + order.getOrderId()));
             ((TextView) view.findViewById(R.id.orderDateText)).setText(sdf.format(order.getOrderDate()));
             ((TextView) view.findViewById(R.id.nameText)).setText(user.getFirstName() + " " + user.getLastName());
             ((TextView) view.findViewById(R.id.orderTypeText)).setText("" + order.getOrderType());
@@ -94,6 +98,22 @@ public class MyOrdersFragment extends Fragment {
 
     public void showOneOrder(Order order) {
         //@TODO show specific order details
+        homeActivity.orderForOtherFragments = order;
+        switch (order.getOrderType()) {
+            case MEDICINE:
+                homeActivity.swapFragment(new MedicineOrderDetailsFragment(), true);
+                break;
+            //TODO Implement others
+            case LAB:
+                homeActivity.swapFragment(new LabOrderDetailsFragment(), true);
+                break;
+            case APPT:
+                break;
+            case AMBULANCE:
+                break;
+            case NURSE:
+                break;
+        }
     }
 
     private class GetOrderDetails extends AsyncTask<Void, Void, Void> {

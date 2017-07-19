@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableRow xmlns:android="http://schemas.android.com/apk/res/android"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:background="@drawable/border_white_bg">
+
+    <TextView
+        android:id="@+id/familyMemberText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/table_cell_padding"/>
+
+    <TextView
+        android:id="@+id/doctorNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/table_cell_padding"/>
+
+    <TextView
+        android:id="@+id/specialityText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/table_cell_padding"/>
+
+    <TextView
+        android:id="@+id/appointmentDateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/table_cell_padding"/>
+
+    <TextView
+        android:id="@+id/reasonText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/table_cell_padding"/>
+
+    <TextView
+        android:id="@+id/statusText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/table_cell_padding"/>
+
+    <ImageView
+        android:id="@+id/prescriptionImageView"
+        android:layout_width="@dimen/image_size"
+        android:layout_height="@dimen/image_size"
+        android:background="@drawable/border"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/table_cell_padding"
+        android:visibility="invisible"/>
+
+</TableRow>

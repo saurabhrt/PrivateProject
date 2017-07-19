@@ -1,12 +1,12 @@
 package com.example.zues.healthok.model;
 
 public class MedicineOrderDetails {
-    private int MedicineOrderDetailsId;
-    private int MedicineOrderId;
-    private String MedicineName;
-    private String Dosage;
-    private int Quantity;
-    private float Price;
+    private int medicineOrderDetailsId;
+    private int medicineOrderId;
+    private String medicineName;
+    private String dosage;
+    private int quantity;
+    private float price;
 
     public MedicineOrderDetails() {
 
@@ -14,60 +14,60 @@ public class MedicineOrderDetails {
 
     public MedicineOrderDetails(int medicineorderdetailsid, int medicineorderid, String medicinename, String dosage, int quantity, float price) {
         super();
-        this.MedicineOrderDetailsId = medicineorderdetailsid;
-        this.MedicineOrderId = medicineorderid;
-        this.MedicineName = medicinename;
-        this.Dosage = dosage;
-        this.Quantity = quantity;
-        this.Price = price;
+        this.medicineOrderDetailsId = medicineorderdetailsid;
+        this.medicineOrderId = medicineorderid;
+        this.medicineName = medicinename;
+        this.dosage = dosage;
+        this.quantity = quantity;
+        this.price = price;
     }
 
     public int getMedicineOrderDetailsId() {
-        return MedicineOrderDetailsId;
+        return medicineOrderDetailsId;
     }
 
     public void setMedicineOrderDetailsId(int medicineOrderDetailsId) {
-        MedicineOrderDetailsId = medicineOrderDetailsId;
+        this.medicineOrderDetailsId = medicineOrderDetailsId;
     }
 
     public int getMedicineOrderId() {
-        return MedicineOrderId;
+        return medicineOrderId;
     }
 
     public void setMedicineOrderId(int medicineOrderId) {
-        MedicineOrderId = medicineOrderId;
+        this.medicineOrderId = medicineOrderId;
     }
 
     public String getMedicineName() {
-        return MedicineName;
+        return medicineName;
     }
 
     public void setMedicineName(String medicineName) {
-        MedicineName = medicineName;
+        this.medicineName = medicineName;
     }
 
     public String getDosage() {
-        return Dosage;
+        return dosage;
     }
 
     public void setDosage(String dosage) {
-        Dosage = dosage;
+        this.dosage = dosage;
     }
 
     public int getQuantity() {
-        return Quantity;
+        return quantity;
     }
 
     public void setQuantity(int quantity) {
-        Quantity = quantity;
+        this.quantity = quantity;
     }
 
     public float getPrice() {
-        return Price;
+        return price;
     }
 
     public void setPrice(float price) {
-        Price = price;
+        this.price = price;
     }
 
 }

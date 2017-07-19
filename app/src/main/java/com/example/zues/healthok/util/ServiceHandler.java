@@ -235,4 +235,34 @@ public class ServiceHandler {
         return -1;
     }
 
+    public String uploadFile(String url, String filePath) {
+        try {
+            String fullURL = urlbase + url;
+            DefaultHttpClient client = new DefaultHttpClient();
+            File file = new File(filePath);
+//            HttpPost post = new HttpPost("http://localhost:8010/healthokapp/rest/files/uploaddocpic");
+            HttpPost post = new HttpPost(fullURL);
+
+            MultipartEntityBuilder entityBuilder = MultipartEntityBuilder.create();
+            entityBuilder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+            entityBuilder.addBinaryBody("file", file);
+            entityBuilder.addTextBody("descrip", filePath);
+            // add more key/value pairs here as needed
+
+            HttpEntity entity = entityBuilder.build();
+            post.setEntity(entity);
+
+            HttpResponse response = client.execute(post);
+            HttpEntity httpEntity = response.getEntity();
+            String result = EntityUtils.toString(httpEntity);
+            Log.v("result", result);
+
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return "";
+    }
+
 }

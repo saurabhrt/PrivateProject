@@ -17,6 +17,9 @@ public class ServiceURL {
     public static String UserDetails = "ReturnUserDetails/userDetails/";
     public static String ChangePassword = "auth/changepassword";
     public static String OrderDetails = "ordermanagement/getuserorders/";
+    public static String ImageDisplayPath = "files/image/";
+    public static String UserAppointmentsPath = "ordermanagement/getuserappointment/";
+    public static String PrescriptionUploadPath = "files/uploadprescription";
 
     /* From website
     doctorSearchPath: "doctor/search/",

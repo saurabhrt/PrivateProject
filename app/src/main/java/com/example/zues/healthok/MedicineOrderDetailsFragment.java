@@ -1,6 +1,5 @@
 package com.example.zues.healthok;
 
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -14,40 +13,71 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.zues.healthok.model.MedicineOrder;
+import com.example.zues.healthok.model.MedicineOrderDetails;
 import com.example.zues.healthok.model.Order;
 import com.example.zues.healthok.model.User;
 import com.example.zues.healthok.util.ServiceHandler;
 import com.example.zues.healthok.util.ServiceURL;
 
-import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+//TODO implement failure of request in each fragment
 
-public class DoctorVisitHistoryFragment extends Fragment {
-    JSONArray result = null;
-    View inflate;
+public class MedicineOrderDetailsFragment extends Fragment {
+    JSONObject result = null;
+    private HomeActivity homeActivity;
     private SessionManager sessionManager;
     private User user;
-    private HomeActivity homeActivity;
+    private Order order;
+    private View inflate;
+    private MedicineOrderDetails medicineOrderDetails;
+    private MedicineOrder medicineOrder;
     private ProgressDialog pDialog;
     private String jsonStr;
-    private ArrayList<Order> orders;
+    private ArrayList<MedicineOrderDetails> mods;
     private ImageView prescriptionImageView;
     private String prescriptionImageURL = "";
 
 
-    public DoctorVisitHistoryFragment() {
+    public MedicineOrderDetailsFragment() {
         // Required empty public constructor
-        orders = new ArrayList<>();
     }
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        inflate = inflater.inflate(R.layout.fragment_medicine_order_details, container, false);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+        ((TextView) inflate.findViewById(R.id.orderDateText)).setText(sdf.format(order.getOrderDate()));
+        ((TextView) inflate.findViewById(R.id.nameText)).setText(user.getFirstName() + " " + user.getLastName());
+        ((TextView) inflate.findViewById(R.id.orderTypeText)).setText("" + order.getOrderType());
+        ((TextView) inflate.findViewById(R.id.descriptionText)).setText(order.getOrderDescription());
+        ((TextView) inflate.findViewById(R.id.statusText)).setText(order.getOrderStatusType().toString());
+        ((TextView) inflate.findViewById(R.id.neededByText)).setText(sdf.format(order.getOrderFulfillDate()));
+        ((TextView) inflate.findViewById(R.id.completedOnText)).setText(sdf.format(order.getOrderCompletionDate()));
+        ((TextView) inflate.findViewById(R.id.totalCostText)).setText("" + order.getTotalCost());
+        ((TextView) inflate.findViewById(R.id.discountText)).setText("" + order.getDiscount());
+        ((TextView) inflate.findViewById(R.id.cashBackBonusText)).setText("" + order.getCashbackBonusApplied());
+        ((TextView) inflate.findViewById(R.id.netAmountText)).setText("" + order.getNetAmount());
+        return inflate;
+    }
+
 
     @Override
     public void onAttach(Context context) {
@@ -55,50 +85,35 @@ public class DoctorVisitHistoryFragment extends Fragment {
         sessionManager = new SessionManager(context);
         homeActivity = (HomeActivity) getActivity();
         user = sessionManager.getUser();
-        new GetOrderDetails().execute();
+        order = homeActivity.orderForOtherFragments;
+        new GetMedicineOrderDetails().execute();
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        inflate = inflater.inflate(R.layout.fragment_doctor_visit_history, container, false);
-        return inflate;
-    }
 
-    private void showOrders() {
-        TableLayout tableLayout = inflate.findViewById(R.id.doctorVisitHistoryTable);
-        TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
-
-        for (int i = 0; i < orders.size(); i++) {
-            Order order = orders.get(i);
-            View view = LayoutInflater.from(getContext()).inflate(R.layout.doctor_visit_history_row, null);
+    private void showMedicineOrderDetails() {
+        TableLayout medicineOrderTable = inflate.findViewById(R.id.medicineOrderTable);
+        for (int i = 0; i < mods.size(); i++) {
+            MedicineOrderDetails mod = mods.get(i);
+            View view = LayoutInflater.from(getContext()).inflate(R.layout.medicine_order_detail_row, null);
             if (i % 2 != 0)
                 view.setBackgroundDrawable(getContext().getResources().getDrawable(R.drawable.border));
-            ((TextView) view.findViewById(R.id.familyMemberText)).setText("");
-            ((TextView) view.findViewById(R.id.doctorNameText)).setText(order.getDoctor().getFirstName()
-                    + " " + order.getDoctor().getLastName());
-            ((TextView) view.findViewById(R.id.specialityText)).setText(order.getDoctor().getSpeciality());
-            ((TextView) view.findViewById(R.id.appointmentDateText)).setText(sdf.format(
-                    order.getDoctorAppointment().getAppointmentDate()));
-            ((TextView) view.findViewById(R.id.reasonText)).setText(order.getOrderDescription());
-            ((TextView) view.findViewById(R.id.statusText)).setText(order.getOrderStatusType().toString());
-            int prescriptionImageId = order.getDoctorAppointment().getPrescriptionImageId();
-            if (prescriptionImageId != 0) {
-                prescriptionImageView = inflate.findViewById(R.id.prescriptionImageView);
-                prescriptionImageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT));
-                prescriptionImageURL = ServiceURL.ImageDisplayPath + prescriptionImageId;
-                new DownloadImage().execute();
-            }
-            tableLayout.addView(view);
+            ((TextView) view.findViewById(R.id.medicineNameText)).setText(mod.getMedicineName());
+            ((TextView) view.findViewById(R.id.dosageText)).setText(mod.getDosage());
+            ((TextView) view.findViewById(R.id.quantityText)).setText("" + mod.getQuantity());
+            ((TextView) view.findViewById(R.id.priceText)).setText("" + mod.getPrice());
+            medicineOrderTable.addView(view);
         }
-
+        if (medicineOrder.getPrescriptionImageId() > 0) {
+            prescriptionImageView = inflate.findViewById(R.id.prescriptionImageView);
+            prescriptionImageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT));
+            prescriptionImageURL = ServiceURL.ImageDisplayPath + medicineOrder.getPrescriptionImageId();
+            new DownloadImage().execute();
+        }
     }
 
 
-    private class GetOrderDetails extends AsyncTask<Void, Void, Void> {
+    private class GetMedicineOrderDetails extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute() {
@@ -120,7 +135,7 @@ public class DoctorVisitHistoryFragment extends Fragment {
         protected Void doInBackground(Void... arg0) {
             // Creating service handler class instance
             ServiceHandler sh = new ServiceHandler();
-            String url = ServiceURL.UserAppointmentsPath + user.getUserId();
+            String url = ServiceURL.Order + "/" + order.getOrderId();
             // Making a request to url and getting response
 
             jsonStr = sh.makeServiceCall(url, ServiceHandler.GET);
@@ -129,7 +144,7 @@ public class DoctorVisitHistoryFragment extends Fragment {
 
             if (jsonStr != null) {
                 try {
-                    result = new JSONArray(jsonStr);
+                    result = new JSONObject(jsonStr);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -149,22 +164,17 @@ public class DoctorVisitHistoryFragment extends Fragment {
             if (jsonStr.isEmpty()) {
                 Toast.makeText(homeActivity, "Unable to connect!!", Toast.LENGTH_SHORT).show();
             } else {
-                for (int i = 0; i < result.length(); i++) {
-                    String jstr = null;
-                    try {
-                        jstr = result.getJSONObject(i).toString();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                Order order = Order.fromJSON(jsonStr);
+                if (order != null) {
+                    medicineOrder = order.getMedicineOrder();
+                    if (medicineOrder != null) {
+                        mods = medicineOrder.getMedicineDetail();
+                        showMedicineOrderDetails();
                     }
-                    Order order = Order.fromJSON(jstr);
-                    orders.add(order);
                 }
-                showOrders();
-
             }
-
-
         }
+
 
     }
 
@@ -208,3 +218,16 @@ public class DoctorVisitHistoryFragment extends Fragment {
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

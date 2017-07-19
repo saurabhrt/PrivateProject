@@ -9,16 +9,17 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import com.example.zues.healthok.model.Order;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     SessionManager sessionManager;
     String fullName;
-
+    Order orderForOtherFragments;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,9 +48,9 @@ public class HomeActivity extends AppCompatActivity
         sessionManager.checkLogin();
         fullName = sessionManager.getUser().getFirstName() + " " +
                 sessionManager.getUser().getLastName();
-        Log.d("Waiting", "RESult");
         TextView userNameTextView = ((NavigationView) findViewById(R.id.nav_view)).getHeaderView(0).findViewById(R.id.userNameTextView);
         userNameTextView.setText(fullName);
+
     }
 
     @Override
@@ -57,6 +58,8 @@ public class HomeActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        } else if (!(getSupportFragmentManager().findFragmentById(R.id.fragment_container) instanceof HomeFragment)) {
+            selectNavigationItem(R.id.nav_menu_home);
         } else {
             super.onBackPressed();
         }
@@ -160,6 +163,14 @@ public class HomeActivity extends AppCompatActivity
     public void swapFragment(Fragment fragment) {
         FragmentTransaction transaction = this.getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, fragment);
+        transaction.commit();
+    }
+
+    public void swapFragment(Fragment fragment, boolean addToBackStack) {
+        FragmentTransaction transaction = this.getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, fragment);
+        if (addToBackStack)
+            transaction.addToBackStack(null);
         transaction.commit();
     }
 

@@ -66,7 +66,8 @@ public class MyFamilyFragment extends Fragment {
         for (int i = 0; i < memberDetails.size(); i++) {
             md = memberDetails.get(i);
             View view = LayoutInflater.from(getContext()).inflate(R.layout.member_detail_row, null);
-
+            if (i % 2 != 0)
+                view.setBackgroundDrawable(getContext().getResources().getDrawable(R.drawable.border));
             ((TextView) view.findViewById(R.id.numberText)).setText("" + i);
             ((TextView) view.findViewById(R.id.nameText)).setText(md.getFirstName() + " " + md.getLastName());
             ((TextView) view.findViewById(R.id.sexText)).setText(md.getSex());
