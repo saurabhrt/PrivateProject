@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.zues.healthok.model.Doctor;
 import com.example.zues.healthok.model.LabOrderDetail;
 import com.example.zues.healthok.model.MemberDetail;
 import com.example.zues.healthok.model.User;
@@ -57,7 +58,7 @@ public class OrderDoctorAppointmentFragment extends Fragment {
     private String orderDescription;
     private String orderType = "APPT";
     private String orderFulfillDate;
-
+    private Doctor doctor;
     public OrderDoctorAppointmentFragment() {
         // Required empty public constructor
     }
@@ -114,6 +115,7 @@ public class OrderDoctorAppointmentFragment extends Fragment {
         super.onAttach(context);
         sessionManager = new SessionManager(context);
         homeActivity = (HomeActivity) getActivity();
+        doctor = homeActivity.doctorForOtherFragments;
         user = sessionManager.getUser();
         new GetUserDetails().execute();
     }
@@ -201,6 +203,7 @@ public class OrderDoctorAppointmentFragment extends Fragment {
             params.add(new BasicNameValuePair("orderType", orderType));
             params.add(new BasicNameValuePair("orderFulfillDate", orderFulfillDate));
             params.add(new BasicNameValuePair("memberId", "" + memberId));
+            params.add(new BasicNameValuePair("doctorId", "" + doctor.getDoctorId()));
             params.add(new BasicNameValuePair("prescriptionImageId", "" + imageId));
             url = ServiceURL.Order;
             jsonStr = sh.makeServiceCall(url, ServiceHandler.POST, params);

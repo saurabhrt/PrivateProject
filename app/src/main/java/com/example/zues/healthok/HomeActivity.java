@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.zues.healthok.model.Doctor;
 import com.example.zues.healthok.model.Order;
 
 public class HomeActivity extends AppCompatActivity
@@ -20,6 +21,7 @@ public class HomeActivity extends AppCompatActivity
     SessionManager sessionManager;
     String fullName;
     Order orderForOtherFragments;
+    Doctor doctorForOtherFragments;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
