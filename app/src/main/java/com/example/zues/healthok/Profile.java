@@ -1,47 +1,77 @@
 package com.example.zues.healthok;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.NetworkImageView;
+import com.example.zues.healthok.model.Doctor;
+
+import static android.media.CamcorderProfile.get;
 
 
 public class Profile extends Activity {
 
-    ListView listview;
+    ImageView imageView;
+    TextView name,speciality,address,timing,fee;
+    Button button;
+    Bundle bundle;
+    int position;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
-        listview = findViewById(R.id.listView);
+        setContentView(R.layout.doctorprofile);
 
-        String[] profilelist = getResources().getStringArray(R.array.profile);
-        listview.setAdapter(new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, profilelist));
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_profile, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+            imageView=  findViewById(R.id.Doctorimage);
+            name=  findViewById(R.id.DoctorName);
+            fee=  findViewById(R.id.Fees);
+            timing=  findViewById(R.id.timing);
+            address= findViewById(R.id.address);
+            speciality=  findViewById(R.id.speciality);
+            button=  findViewById(R.id.appointment);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+
+            position=BookAppointmentFragment.pos;
+           dataset(position);
+         /*   button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(DoctorProfile.this,Appointment.class));
+                }
+            }); */
+
+
         }
+    void dataset(int pos)
+    {
+        Doctor doctordata=BookAppointmentFragment.listresult.get(pos);
+       //imageView.setImageBitmap();
+        name.setText("Dr. "+doctordata.getFirstName()+" "+doctordata.getLastName());
+        speciality.setText(doctordata.getSpeciality());
+        fee.setText("Rs "+doctordata.getFees());
+        timing.setText(doctordata.getClinicTiming());
+        address.setText(doctordata.getAddressLine1()+ "\n"+doctordata.getAddressLine2()+doctordata.getAddressLine3());
+         button.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 startActivity(new Intent(Profile.this,Patientform.class));
+             }
+         });
 
-        return super.onOptionsItemSelected(item);
+
+
     }
+
 }

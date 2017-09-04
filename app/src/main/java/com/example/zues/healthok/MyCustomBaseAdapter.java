@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class MyCustomBaseAdapter extends BaseAdapter {
     private static ArrayList<Detail> searchArrayList;
 
+
     private LayoutInflater mInflater;
 
     public MyCustomBaseAdapter(Context context, ArrayList<Detail> results) {

@@ -2,6 +2,7 @@ package com.example.zues.healthok;
 
 
 import android.app.Activity;
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -78,6 +79,7 @@ public class Search extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+
         session = new SessionManager(getApplicationContext());
         HashMap<String, String> user = session.getUserDetails();
         String username = user.get(SessionManager.KEY_USERNAME);
@@ -86,7 +88,11 @@ public class Search extends Activity {
         customer.setText("Hello: " + username);
         sharedPreference = new SharedPreference();
         context = getApplicationContext();
-
+        Intent intent = getIntent();
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            //   domysearch(query);
+        }
 
         suggest = new ArrayList<String>();
         autoComplete = findViewById(R.id.medname);

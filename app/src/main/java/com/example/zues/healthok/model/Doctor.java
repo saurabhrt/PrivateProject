@@ -4,6 +4,8 @@ package com.example.zues.healthok.model;
  * Created by Abhay-Jaiswal on 6/16/2016.
  */
 
+import com.example.zues.healthok.util.ServiceURL;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -44,6 +46,7 @@ public class Doctor {
     private String hasOwnHospital;
     private String webSite;
     private String specialization;
+    private String Clinicname;
     private boolean isProvideHomeConsultationFees;
     private boolean IsDiagnostics;
     private boolean IsProvideAnsweringService;
@@ -51,6 +54,14 @@ public class Doctor {
     private boolean Health_panel;
     private ArrayList<DoctorPhoneNumber> doctorPhoneNumbers;
     private ArrayList<DoctorHospitalAffiliation> doctorHospitalAffiliation;
+    public String getClinicname()
+    {
+        return Clinicname;
+    }
+    public void setClinicname(String clinicname)
+    {
+        this.Clinicname=clinicname;
+    }
 
     public String getSpecialization() {
         return specialization;
@@ -68,8 +79,8 @@ public class Doctor {
         this.doctorId = doctorId;
     }
 
-    public int getDoctorImageid() {
-        return doctorImageid;
+    public String getDoctorImageid() {
+        return ServiceURL.Base+ServiceURL.DocterImage+doctorImageid;
     }
 
     public void setDoctorImageid(int doctorImageid) {
