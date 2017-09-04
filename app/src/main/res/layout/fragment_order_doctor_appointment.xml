@@ -8,7 +8,7 @@
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin"
-            tools:context="com.example.zues.healthok.OrderAmbulanceFragment">
+            tools:context="com.example.zues.healthok.OrderDoctorAppointmentFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:text="Order Ambulance"
+            android:text="Doctor Appointment"
             android:textSize="30sp"
             android:textStyle="bold"/>
 
@@ -65,7 +65,7 @@
             android:layout_marginLeft="28dp"
             android:layout_marginRight="28dp"
             android:layout_marginTop="5dp"
-            android:text="Details"
+            android:text="Reason"
             android:textSize="18sp"
             android:textStyle="bold"/>
 
@@ -78,57 +78,7 @@
             android:layout_marginRight="28dp"
             android:layout_marginTop="5dp"
             android:ems="10"
-            android:hint="Enter any specific Ambulance Needs"
-            android:inputType="textPersonName"
-            android:text=""/>
-
-        <TextView
-            android:id="@+id/textView567"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="28dp"
-            android:layout_marginRight="28dp"
-            android:layout_marginTop="5dp"
-            android:text="From"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
-
-        <EditText
-            android:id="@+id/fromEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="28dp"
-            android:layout_marginRight="28dp"
-            android:layout_marginTop="5dp"
-            android:ems="10"
-            android:hint="Enter pickup location"
-            android:inputType="textPersonName"
-            android:text=""/>
-
-        <TextView
-            android:id="@+id/textView569"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="28dp"
-            android:layout_marginRight="28dp"
-            android:layout_marginTop="5dp"
-            android:text="From"
-            android:textSize="18sp"
-            android:textStyle="bold"/>
-
-        <EditText
-            android:id="@+id/toEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="28dp"
-            android:layout_marginRight="28dp"
-            android:layout_marginTop="5dp"
-            android:ems="10"
-            android:hint="Enter drop location"
+            android:hint="Enter the medicine and additional information"
             android:inputType="textPersonName"
             android:text=""/>
 
@@ -156,6 +106,47 @@
             android:hint="DD/MM/YYYY"
             android:inputType="date"/>
 
+        <TextView
+            android:id="@+id/textView58"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="28dp"
+            android:layout_marginRight="28dp"
+            android:layout_marginTop="5dp"
+            android:text="Prescription"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <Button
+            android:id="@+id/uploadButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="28dp"
+            android:layout_marginRight="28dp"
+            android:layout_marginTop="28dp"
+            android:background="@color/buttonBlue"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="Upload"/>
+
+        <TextView
+            android:id="@+id/textView60"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="28dp"
+            android:layout_marginRight="28dp"
+            android:layout_marginTop="5dp"
+            android:text="Upload prescription"/>
+
+        <ImageView
+            android:id="@+id/prescriptionImageView"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="28dp"
+            android:visibility="gone"/>
+
         <Button
             android:id="@+id/orderButton"
             android:layout_width="match_parent"
@@ -167,7 +158,7 @@
             android:background="@color/buttonBlue"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="Order Ambulance"/>
+            android:text="Order Medicine"/>
 
 
     </LinearLayout>
