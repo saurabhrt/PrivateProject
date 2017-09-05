@@ -26,6 +26,7 @@ public class Profile extends Activity {
     Button button;
     Bundle bundle;
     int position;
+    HomeActivity homeActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +46,7 @@ public class Profile extends Activity {
 
             position=BookAppointmentFragment.pos;
            dataset(position);
-         /*   button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    startActivity(new Intent(DoctorProfile.this,Appointment.class));
-                }
-            }); */
+
 
 
         }
@@ -66,7 +62,8 @@ public class Profile extends Activity {
          button.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
-                 startActivity(new Intent(Profile.this,Patientform.class));
+               //  startActivity(new Intent(Profile.this,Patientform.class));
+                 homeActivity.swapFragment(new Profilefragment());
              }
          });
 

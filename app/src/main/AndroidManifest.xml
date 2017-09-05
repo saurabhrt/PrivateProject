@@ -117,9 +117,7 @@
         </service>
         // end gcm settings
 
-        <activity
-            android:name=".Patientform"
-            android:label="@string/title_activity_patientform"></activity>
+
     </application>
 
 </manifest>

@@ -92,9 +92,10 @@ public class BookAppointmentFragment extends Fragment {
              @Override
              public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                  pos=i;
-                 Intent intent=new Intent(getActivity(),Profile.class);
+                Intent intent=new Intent(getActivity(),Profile.class);
                  startActivity(intent);
                //  intent.putExtra("abc",pos);
+               //  homeActivity.swapFragment(new OrderDoctorAppointmentFragment(),true);
              }
          });
 

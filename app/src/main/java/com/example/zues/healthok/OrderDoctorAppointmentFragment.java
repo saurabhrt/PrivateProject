@@ -38,6 +38,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.zues.healthok.BookAppointmentFragment.pos;
+
 //TODO implement failure of request in each fragment
 
 public class OrderDoctorAppointmentFragment extends Fragment {
@@ -59,6 +61,8 @@ public class OrderDoctorAppointmentFragment extends Fragment {
     private String orderType = "APPT";
     private String orderFulfillDate;
     private Doctor doctor;
+    Doctor doctordata=BookAppointmentFragment.listresult.get(pos);
+      int doctorForOtherFragments=doctordata.getDoctorId();
     public OrderDoctorAppointmentFragment() {
         // Required empty public constructor
     }
@@ -73,7 +77,7 @@ public class OrderDoctorAppointmentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        inflate = inflater.inflate(R.layout.fragment_order_medicines, container, false);
+        inflate = inflater.inflate(R.layout.fragment_order_doctor_appointment, container, false);
         prescriptionImageView = inflate.findViewById(R.id.prescriptionImageView);
         inflate.findViewById(R.id.uploadButton).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,7 +119,7 @@ public class OrderDoctorAppointmentFragment extends Fragment {
         super.onAttach(context);
         sessionManager = new SessionManager(context);
         homeActivity = (HomeActivity) getActivity();
-        doctor = homeActivity.doctorForOtherFragments;
+      //  ab = homeActivity.doctorForOtherFragments;
         user = sessionManager.getUser();
         new GetUserDetails().execute();
     }
@@ -203,7 +207,7 @@ public class OrderDoctorAppointmentFragment extends Fragment {
             params.add(new BasicNameValuePair("orderType", orderType));
             params.add(new BasicNameValuePair("orderFulfillDate", orderFulfillDate));
             params.add(new BasicNameValuePair("memberId", "" + memberId));
-            params.add(new BasicNameValuePair("doctorId", "" + doctor.getDoctorId()));
+            params.add(new BasicNameValuePair("doctorId", "" + doctorForOtherFragments));
             params.add(new BasicNameValuePair("prescriptionImageId", "" + imageId));
             url = ServiceURL.Order;
             jsonStr = sh.makeServiceCall(url, ServiceHandler.POST, params);

@@ -29,6 +29,7 @@ dependencies {
         exclude module: "httpclient"
     }
 
+
     compile 'com.beardedhen:androidbootstrap:2.1.0'
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     compile 'com.android.support:support-v13:26.0.0-alpha1'
@@ -41,7 +42,6 @@ dependencies {
     compile 'org.jetbrains:annotations-java5:15.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.github.silvestrpredko:dot-progress-bar:1.1'
-
 }
 android {
     packagingOptions {

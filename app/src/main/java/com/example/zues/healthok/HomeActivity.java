@@ -16,12 +16,15 @@ import android.widget.TextView;
 import com.example.zues.healthok.model.Doctor;
 import com.example.zues.healthok.model.Order;
 
+import static com.example.zues.healthok.BookAppointmentFragment.pos;
+
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     SessionManager sessionManager;
     String fullName;
     Order orderForOtherFragments;
-    Doctor doctorForOtherFragments;
+  //  Doctor doctordata=BookAppointmentFragment.listresult.get(pos);
+  //  int doctorForOtherFragments=doctordata.getDoctorId();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
