@@ -1,22 +1,13 @@
 package com.example.zues.healthok;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.NetworkImageView;
 import com.example.zues.healthok.model.Doctor;
-
-import static android.media.CamcorderProfile.get;
 
 
 public class Profile extends Activity {

@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -75,7 +76,8 @@ public class OrderAmbulanceFragment extends Fragment {
                 orderDescription = ((EditText) inflate.findViewById(R.id.medicineEditText)).getText().toString();
                 String from = ((EditText) inflate.findViewById(R.id.fromEditText)).getText().toString();
                 String to = ((EditText) inflate.findViewById(R.id.toEditText)).getText().toString();
-                orderFulfillDate = ((EditText) inflate.findViewById(R.id.dateEditText)).getText().toString();
+                DatePicker picker = inflate.findViewById(R.id.datePicker);
+                orderFulfillDate = "" + (picker.getDayOfMonth() + 1) + "/" + picker.getMonth() + "/" + picker.getYear();
                 if (memberId == "") {
                     Toast.makeText(homeActivity, "Please select family member!!", Toast.LENGTH_SHORT).show();
                     return;

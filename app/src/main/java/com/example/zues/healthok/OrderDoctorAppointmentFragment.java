@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -38,8 +39,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.zues.healthok.BookAppointmentFragment.pos;
-
 //TODO implement failure of request in each fragment
 
 public class OrderDoctorAppointmentFragment extends Fragment {
@@ -61,8 +60,6 @@ public class OrderDoctorAppointmentFragment extends Fragment {
     private String orderType = "APPT";
     private String orderFulfillDate;
     private Doctor doctor;
-    Doctor doctordata=BookAppointmentFragment.listresult.get(pos);
-      int doctorForOtherFragments=doctordata.getDoctorId();
     public OrderDoctorAppointmentFragment() {
         // Required empty public constructor
     }
@@ -78,15 +75,6 @@ public class OrderDoctorAppointmentFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         inflate = inflater.inflate(R.layout.fragment_order_doctor_appointment, container, false);
-        prescriptionImageView = inflate.findViewById(R.id.prescriptionImageView);
-        inflate.findViewById(R.id.uploadButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-                photoPickerIntent.setType("image/*");
-                startActivityForResult(photoPickerIntent, SELECT_PHOTO);
-            }
-        });
         inflate.findViewById(R.id.orderButton).setEnabled(true);
         inflate.findViewById(R.id.orderButton).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,7 +82,8 @@ public class OrderDoctorAppointmentFragment extends Fragment {
                 int selectedItemPosition = ((Spinner) inflate.findViewById(R.id.familyMemberSpinner)).getSelectedItemPosition();
                 memberId = "" + userFull.getMemberDetail().get(selectedItemPosition).getMemberId();
                 orderDescription = ((EditText) inflate.findViewById(R.id.medicineEditText)).getText().toString();
-                orderFulfillDate = ((EditText) inflate.findViewById(R.id.dateEditText)).getText().toString();
+                DatePicker picker = inflate.findViewById(R.id.datePicker);
+                orderFulfillDate = "" + (picker.getDayOfMonth() + 1) + "/" + picker.getMonth() + "/" + picker.getYear();
                 if (memberId == "") {
                     Toast.makeText(homeActivity, "Please select family member!!", Toast.LENGTH_SHORT).show();
                     return;
@@ -119,6 +108,7 @@ public class OrderDoctorAppointmentFragment extends Fragment {
         super.onAttach(context);
         sessionManager = new SessionManager(context);
         homeActivity = (HomeActivity) getActivity();
+        doctor = homeActivity.doctorForOtherFragments;
       //  ab = homeActivity.doctorForOtherFragments;
         //check 122
         user = sessionManager.getUser();
@@ -183,35 +173,14 @@ public class OrderDoctorAppointmentFragment extends Fragment {
         protected Void doInBackground(Void... arg0) {
             // Creating service handler class instance
             ServiceHandler sh = new ServiceHandler();
-            String url = ServiceURL.PrescriptionUploadPath;
-            // Making a request to url and getting response
-
-            jsonStr = sh.uploadFile(url, imageUri.getPath());
-
-            Log.d("Response: Upload files", "> " + jsonStr);
-            int imageId = 0;
-            if (jsonStr != null) {
-                try {
-                    result = new JSONObject(jsonStr);
-                    imageId = result.getInt("imageId");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                Log.e("ServiceHandler", "Couldn't get any data from the url");
-            }
-            if (imageId == -1)
-                imageId = 0;
 
             List<NameValuePair> params = new ArrayList<>(5);
             params.add(new BasicNameValuePair("orderDescription", orderDescription));
             params.add(new BasicNameValuePair("orderType", orderType));
             params.add(new BasicNameValuePair("orderFulfillDate", orderFulfillDate));
             params.add(new BasicNameValuePair("memberId", "" + memberId));
-            params.add(new BasicNameValuePair("doctorId", "" + doctorForOtherFragments));
-            params.add(new BasicNameValuePair("prescriptionImageId", "" + imageId));
-            url = ServiceURL.Order;
-            jsonStr = sh.makeServiceCall(url, ServiceHandler.POST, params);
+            params.add(new BasicNameValuePair("doctorId", "" + doctor.getDoctorId()));
+            jsonStr = sh.makeServiceCall(ServiceURL.Order, ServiceHandler.POST, params);
             if (jsonStr != null) {
                 try {
                     result = new JSONObject(jsonStr);

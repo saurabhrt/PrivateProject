@@ -1,17 +1,13 @@
 package com.example.zues.healthok;
 
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
-
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
-
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,11 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,27 +28,19 @@ import com.example.zues.healthok.util.ServiceHandler;
 import com.example.zues.healthok.util.ServiceURL;
 import com.google.gson.JsonParser;
 
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
 import java.util.ArrayList;
 
-
-
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class BookAppointmentFragment extends Fragment {
+    public static ArrayList<Doctor> listresult = new ArrayList<Doctor>();
+    public static int pos;
     View view;
     ListView listView;
-    public static    ArrayList<Doctor> listresult =new ArrayList<Doctor>();
     ArrayList<Doctor> filterlist=new ArrayList<Doctor>();
     HomeActivity homeActivity;
-    public static int pos;
 
 
 
@@ -85,24 +70,23 @@ public class BookAppointmentFragment extends Fragment {
         view= inflater.inflate(R.layout.fragment_book_appointment, container, false);
 
 
-     //   searchView=view.findViewById(R.id.searchview);
+        //   searchView=view.findViewById(R.id.searchview);
 
         listView=  view.findViewById(R.id.doctorlist);
-         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-             @Override
-             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                 pos=i;
-              //  Intent intent=new Intent(getActivity(),Profile.class);
-              //   startActivity(intent);
-               //  intent.putExtra("abc",pos);
-                 homeActivity.swapFragment(new Profilefragment(),true);
-             }
-         });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                pos = i;
+                homeActivity.doctorForOtherFragments = listresult.get(i);
+//                Intent intent=new Intent(getActivity(),Profile.class);
+//                startActivity(intent);
+                //  intent.putExtra("abc",pos);
+                homeActivity.swapFragment(new DoctorProfileFragment(), true);
+            }
+        });
 
 
-
-       return view;
-
+        return view;
     }
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -128,13 +112,13 @@ public class BookAppointmentFragment extends Fragment {
             @Override
             public boolean onQueryTextChange(String newText) {
                 filterlist.clear();
-                    if(newText.length()>0) {
-                        listView.setVisibility(view.VISIBLE);
-                        myasynctask m = (myasynctask) new myasynctask().execute(newText);
-                    }
+                if (newText.length() > 0) {
+                    listView.setVisibility(View.VISIBLE);
+                    myasynctask m = (myasynctask) new myasynctask().execute(newText);
+                }
                 if(newText.isEmpty())
                 {
-                    listView.setVisibility(view.GONE);
+                    listView.setVisibility(View.GONE);
                 }
 
 
@@ -154,22 +138,25 @@ public class BookAppointmentFragment extends Fragment {
             Dname=(listresult.get(i).getFirstName().toLowerCase()+listresult.get(i).getLastName().toLowerCase());
             if(Dname.contains(string.toLowerCase().trim()))
             {
-              filterlist.add(listresult.get(i));
+                filterlist.add(listresult.get(i));
             }
         }
     }
 
-
+    static class Viewholder {
+        TextView firstname;
+        TextView speciality;
+        ImageView imageView;
+    }
 
     class myasynctask extends AsyncTask<String,Void,String>
     {
         JsonParser jParser;
         JSONArray DoctorList;
         String textSearch;
-       // ProgressDialog progressDialog;
+        // ProgressDialog progressDialog;
         String url=new String();
-      //  ProgressBar progressBar;
-        //hell
+        //  ProgressBar progressBar;
 
 
         @Override
@@ -178,7 +165,7 @@ public class BookAppointmentFragment extends Fragment {
             super.onPreExecute();
             jParser=new JsonParser();
             DoctorList=new JSONArray();
-          //  progressBar=getActivity().findViewById(R.id.progressbar);
+            //  progressBar=getActivity().findViewById(R.id.progressbar);
 
         /*   progressDialog=new ProgressDialog(getActivity());
             progressDialog.setCancelable(false);
@@ -247,7 +234,7 @@ public class BookAppointmentFragment extends Fragment {
                         {  int k= (listresult.get(j).getDoctorId());
                             int p=doctordata.getDoctorId();
                             if(k==p)
-                               matchfound="Y";
+                                matchfound = "Y";
                         }
                         if(matchfound=="N")
                             listresult.add(doctordata);
@@ -273,34 +260,32 @@ public class BookAppointmentFragment extends Fragment {
             {
                 Toast.makeText(getActivity(), "Unable to connect to server,please try later", Toast.LENGTH_LONG).show();
 
-              //  progressDialog.dismiss();
-             //   progressBar.setVisibility(view.INVISIBLE);
+                //  progressDialog.dismiss();
+                //   progressBar.setVisibility(view.INVISIBLE);
             }
             else
             {
                 filterDoctor(textSearch);
                 listView.setAdapter(new SearchResultsAdapter(getActivity(),filterlist));
-              //  progressDialog.dismiss();
-             //   progressBar.setVisibility(view.INVISIBLE);
+                //  progressDialog.dismiss();
+                //   progressBar.setVisibility(view.INVISIBLE);
             }
         }
     }
 
-
     // Adapter class
-   public class SearchResultsAdapter extends BaseAdapter
+    public class SearchResultsAdapter extends BaseAdapter
     {
-        private LayoutInflater layoutInflater;
         ArrayList<Doctor> doctor_detail=new ArrayList<>();
         int count;
         Context context;
         Bitmap bitmap;
+        private LayoutInflater layoutInflater;
 
 
-
-     public    SearchResultsAdapter(Context context,ArrayList<Doctor> doctor_detail)
+        public SearchResultsAdapter(Context context, ArrayList<Doctor> doctor_detail)
         {
-              layoutInflater=LayoutInflater.from(context);
+            layoutInflater = LayoutInflater.from(context);
             this.doctor_detail=doctor_detail;
             count=doctor_detail.size();
             this.context=context;
@@ -323,7 +308,7 @@ public class BookAppointmentFragment extends Fragment {
 
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
-                 Viewholder viewholder;
+            Viewholder viewholder;
             Doctor doctordata=doctor_detail.get(i);
             if(view==null)
             {
@@ -336,13 +321,13 @@ public class BookAppointmentFragment extends Fragment {
             }
             else
             {
-               viewholder= (Viewholder) view.getTag();
+                viewholder = (Viewholder) view.getTag();
 
             }
             viewholder.firstname.setText("Dr. "+doctordata.getFirstName()+" "+doctordata.getLastName());
             viewholder.speciality.setText(doctordata.getSpeciality());
 
-          // Loading image using Glide library
+            // Loading image using Glide library
             Glide.with(context).load(doctordata.getDoctorImageid())
                     .thumbnail(0.5f)
                     .crossFade()
@@ -352,12 +337,6 @@ public class BookAppointmentFragment extends Fragment {
             return view;
         }
 
-    }
-    static class Viewholder
-    {
-        TextView firstname;
-        TextView speciality;
-        ImageView imageView;
     }
 
 }
