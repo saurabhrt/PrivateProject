@@ -23,8 +23,8 @@ public class HomeActivity extends AppCompatActivity
     SessionManager sessionManager;
     String fullName;
     Order orderForOtherFragments;
-  //  Doctor doctordata=BookAppointmentFragment.listresult.get(pos);
-  //  int doctorForOtherFragments=doctordata.getDoctorId();
+    Doctor doctordata=BookAppointmentFragment.listresult.get(pos);
+    int doctorForOtherFragments=doctordata.getDoctorId();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
