@@ -78,15 +78,20 @@ public class ReportsFragment extends Fragment {
                 view.setBackgroundDrawable(getContext().getResources().getDrawable(R.drawable.border));
             ((TextView) view.findViewById(R.id.familyMemberText)).setText("");
             ((TextView) view.findViewById(R.id.testDescriptionTest)).setText(order.getOrderDescription());
+            if (order.getOrderCompletionDate() != null)
             ((TextView) view.findViewById(R.id.testDateText)).setText(sdf.format(
                     order.getOrderCompletionDate()));
             ((TextView) view.findViewById(R.id.statusText)).setText(order.getOrderStatusType().toString());
-            int prescriptionImageId = order.getLabOrder().getPrescriptionImageId();
+            int prescriptionImageId = 0;
+            if (order.getLabOrder() != null)
+                prescriptionImageId = order.getLabOrder().getPrescriptionImageId();
             if (prescriptionImageId != 0) {
                 prescriptionImageView = inflate.findViewById(R.id.prescriptionImageView);
                 prescriptionImageURL = ServiceURL.ImageDisplayPath + prescriptionImageId;
             }
-            int labResultImageId = order.getLabOrder().getLabResultImageId();
+            int labResultImageId = 0;
+            if (order.getLabOrder() != null)
+                labResultImageId = order.getLabOrder().getLabResultImageId();
             if (labResultImageId != 0) {
                 testReportImageView = inflate.findViewById(R.id.testReportImageView);
                 testReportImageURL = ServiceURL.ImageDisplayPath + labResultImageId;

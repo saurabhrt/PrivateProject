@@ -35,12 +35,12 @@ public class User {
         try {
             JSONObject jsonObject = new JSONObject(jsonString);
             setUserId(jsonObject.getInt("userId"));
-            setEmailId(jsonObject.getString("emailId"));
             setFirstName(jsonObject.getString("firstName"));
             setLastName(jsonObject.getString("lastName"));
             setPassword(jsonObject.getString("password"));
             setPhone(jsonObject.getString("mobile"));
             setRegistrationNumber("registrationNumber");
+            setEmailId(jsonObject.getString("emailId"));
 
 
 /*

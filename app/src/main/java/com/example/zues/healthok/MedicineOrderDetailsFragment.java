@@ -92,6 +92,9 @@ public class MedicineOrderDetailsFragment extends Fragment {
 
     private void showMedicineOrderDetails() {
         TableLayout medicineOrderTable = inflate.findViewById(R.id.medicineOrderTable);
+        if (mods.size() == 0) {
+            Toast.makeText(homeActivity, "Unable to load medicine order details", Toast.LENGTH_SHORT).show();
+        }
         for (int i = 0; i < mods.size(); i++) {
             MedicineOrderDetails mod = mods.get(i);
             View view = LayoutInflater.from(getContext()).inflate(R.layout.medicine_order_detail_row, null);

@@ -73,18 +73,24 @@ public class DoctorVisitHistoryFragment extends Fragment {
 
         for (int i = 0; i < orders.size(); i++) {
             Order order = orders.get(i);
+            if (order == null)
+                continue;
             View view = LayoutInflater.from(getContext()).inflate(R.layout.doctor_visit_history_row, null);
             if (i % 2 != 0)
                 view.setBackgroundDrawable(getContext().getResources().getDrawable(R.drawable.border));
             ((TextView) view.findViewById(R.id.familyMemberText)).setText("");
-            ((TextView) view.findViewById(R.id.doctorNameText)).setText(order.getDoctor().getFirstName()
-                    + " " + order.getDoctor().getLastName());
-            ((TextView) view.findViewById(R.id.specialityText)).setText(order.getDoctor().getSpeciality());
-            ((TextView) view.findViewById(R.id.appointmentDateText)).setText(sdf.format(
-                    order.getDoctorAppointment().getAppointmentDate()));
+            if (order.getDoctor() != null) {
+                ((TextView) view.findViewById(R.id.doctorNameText)).setText(order.getDoctor().getFirstName()
+                        + " " + order.getDoctor().getLastName());
+                ((TextView) view.findViewById(R.id.specialityText)).setText(order.getDoctor().getSpeciality());
+                ((TextView) view.findViewById(R.id.appointmentDateText)).setText(sdf.format(
+                        order.getDoctorAppointment().getAppointmentDate()));
+            }
             ((TextView) view.findViewById(R.id.reasonText)).setText(order.getOrderDescription());
             ((TextView) view.findViewById(R.id.statusText)).setText(order.getOrderStatusType().toString());
-            int prescriptionImageId = order.getDoctorAppointment().getPrescriptionImageId();
+            int prescriptionImageId = 0;
+            if (order.getDoctorAppointment() != null)
+                prescriptionImageId = order.getDoctorAppointment().getPrescriptionImageId();
             if (prescriptionImageId != 0) {
                 prescriptionImageView = inflate.findViewById(R.id.prescriptionImageView);
                 prescriptionImageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,

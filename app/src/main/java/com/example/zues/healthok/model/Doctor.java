@@ -4,8 +4,6 @@ package com.example.zues.healthok.model;
  * Created by Abhay-Jaiswal on 6/16/2016.
  */
 
-import com.example.zues.healthok.util.ServiceURL;
-
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -79,8 +77,8 @@ public class Doctor {
         this.doctorId = doctorId;
     }
 
-    public String getDoctorImageid() {
-        return ServiceURL.Base+ServiceURL.DocterImage+doctorImageid;
+    public int getDoctorImageid() {
+        return doctorImageid;
     }
 
     public void setDoctorImageid(int doctorImageid) {

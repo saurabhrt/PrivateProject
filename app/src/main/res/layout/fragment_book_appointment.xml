@@ -1,14 +1,21 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-    >
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/bgwhite"
+              android:orientation="vertical">
 
 
-                <ListView
-                    android:id="@+id/doctorlist"
-                    android:layout_width="match_parent"
-                    android:layout_height="fill_parent"
-                    android:choiceMode="singleChoice"
-                    android:listSelector="@drawable/list_selector"/>
-</FrameLayout>
+    <SearchView
+        android:id="@+id/searchview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:iconifiedByDefault="false"/>
+
+    <ListView
+        android:id="@+id/doctorlist"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:choiceMode="singleChoice"
+        android:listSelector="@drawable/list_selector"/>
+</LinearLayout>
 
