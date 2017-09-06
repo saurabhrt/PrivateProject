@@ -195,6 +195,7 @@ public class Login extends AppCompatActivity {
                 UserFull userfull = UserFull.fromJSON(jsonStr);
                 if (userfull != null) {
                     Log.d("LOGIN", "Userfull Name is " + userfull.getFirstName());
+                    Log.d("LOGIN", "User Name is " + user.getFirstName());
                 } else {
                     Log.d("LOGIN", "Unable to parse json string " + jsonStr);
                 }

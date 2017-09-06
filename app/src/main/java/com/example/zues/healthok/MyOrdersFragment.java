@@ -76,6 +76,8 @@ public class MyOrdersFragment extends Fragment {
             orderNumberText.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Log.d("Click", "Clicked" + order.getOrderId());
+//                    Toast.makeText(homeActivity.getApplicationContext(),"Clicked",Toast.LENGTH_SHORT);
                     showOneOrder(order);
                 }
             });
@@ -86,6 +88,7 @@ public class MyOrdersFragment extends Fragment {
             ((TextView) view.findViewById(R.id.descriptionText)).setText(order.getOrderDescription());
             ((TextView) view.findViewById(R.id.statusText)).setText(order.getOrderStatusType().toString());
             ((TextView) view.findViewById(R.id.neededByText)).setText(sdf.format(order.getOrderFulfillDate()));
+            if (order.getOrderCompletionDate() != null)
             ((TextView) view.findViewById(R.id.completedOnText)).setText(sdf.format(order.getOrderCompletionDate()));
             ((TextView) view.findViewById(R.id.totalCostText)).setText("" + order.getTotalCost());
             ((TextView) view.findViewById(R.id.discountText)).setText("" + order.getDiscount());

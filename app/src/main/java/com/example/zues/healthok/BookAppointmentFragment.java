@@ -229,7 +229,7 @@ public class BookAppointmentFragment extends Fragment {
                             doctordata.setAddressLine3("");
 
 
-
+/*
                         for(int j=0;j<listresult.size();j++)
                         {  int k= (listresult.get(j).getDoctorId());
                             int p=doctordata.getDoctorId();
@@ -237,6 +237,9 @@ public class BookAppointmentFragment extends Fragment {
                                 matchfound = "Y";
                         }
                         if(matchfound=="N")
+                            listresult.add(doctordata);
+*/
+                        if (!listresult.contains(doctordata))
                             listresult.add(doctordata);
 
 
@@ -309,7 +312,6 @@ public class BookAppointmentFragment extends Fragment {
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             Viewholder viewholder;
-            Doctor doctordata=doctor_detail.get(i);
             if(view==null)
             {
                 view=layoutInflater.inflate(R.layout.customdoctorview,null);
@@ -324,15 +326,19 @@ public class BookAppointmentFragment extends Fragment {
                 viewholder = (Viewholder) view.getTag();
 
             }
-            viewholder.firstname.setText("Dr. "+doctordata.getFirstName()+" "+doctordata.getLastName());
-            viewholder.speciality.setText(doctordata.getSpeciality());
+            if (doctor_detail.size() > 0) {
+                Doctor doctordata = doctor_detail.get(i);
+                viewholder.firstname.setText("Dr. " + doctordata.getFirstName() + " " + doctordata.getLastName());
+                viewholder.speciality.setText(doctordata.getSpeciality());
 
-            // Loading image using Glide library
-            Glide.with(context).load(doctordata.getDoctorImageid())
-                    .thumbnail(0.5f)
-                    .crossFade()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(viewholder.imageView);
+                // Loading image using Glide library
+                Glide.with(context).load(doctordata.getDoctorImageid())
+                        .thumbnail(0.5f)
+                        .crossFade()
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .into(viewholder.imageView);
+
+            }
 
             return view;
         }
