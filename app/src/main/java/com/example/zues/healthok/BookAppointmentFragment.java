@@ -95,7 +95,7 @@ public class BookAppointmentFragment extends Fragment {
               //  Intent intent=new Intent(getActivity(),Profile.class);
               //   startActivity(intent);
                //  intent.putExtra("abc",pos);
-                 homeActivity.swapFragment(new OrderDoctorAppointmentFragment(),true);
+                 homeActivity.swapFragment(new Profilefragment(),true);
              }
          });
 
