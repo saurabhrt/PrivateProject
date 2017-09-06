@@ -120,6 +120,7 @@ public class OrderDoctorAppointmentFragment extends Fragment {
         sessionManager = new SessionManager(context);
         homeActivity = (HomeActivity) getActivity();
       //  ab = homeActivity.doctorForOtherFragments;
+        //check
         user = sessionManager.getUser();
         new GetUserDetails().execute();
     }
