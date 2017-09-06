@@ -63,7 +63,8 @@ public class Profile extends Activity {
              @Override
              public void onClick(View view) {
                //  startActivity(new Intent(Profile.this,Patientform.class));
-                 homeActivity.swapFragment(new Profilefragment());
+               //  homeActivity.swapFragment(new Profilefragment());
+                 homeActivity.swapFragment(new OrderDoctorAppointmentFragment());
              }
          });
 
