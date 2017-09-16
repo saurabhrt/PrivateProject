@@ -4,6 +4,9 @@ package com.example.zues.healthok.model;
  * Created by Abhay-Jaiswal on 6/16/2016.
  */
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -38,7 +41,7 @@ public class Doctor {
     private String addressLine3;
     private int cityId;
     private String pincode;
-    private String Speciality;
+    private String speciality;
     private boolean provideEmergencyCare;
     private boolean isTaleMedicineEnabled;
     private String hasOwnHospital;
@@ -52,6 +55,20 @@ public class Doctor {
     private boolean Health_panel;
     private ArrayList<DoctorPhoneNumber> doctorPhoneNumbers;
     private ArrayList<DoctorHospitalAffiliation> doctorHospitalAffiliation;
+
+    public static Doctor fromJSON(String jsonString) {
+        Doctor doctor = null;
+        Gson gson = new GsonBuilder().setDateFormat(
+                "yyyy-MM-dd'T'HH:mm:ssZ").create();
+        try {
+            doctor = gson.fromJson(jsonString, Doctor.class);
+            return doctor;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return doctor;
+    }
+
     public String getClinicname()
     {
         return Clinicname;
@@ -287,11 +304,11 @@ public class Doctor {
     }
 
     public String getSpeciality() {
-        return Speciality;
+        return speciality;
     }
 
     public void setSpeciality(String speciality) {
-        Speciality = speciality;
+        this.speciality = speciality;
     }
 
     public boolean isProvideHomeConsultationFees() {

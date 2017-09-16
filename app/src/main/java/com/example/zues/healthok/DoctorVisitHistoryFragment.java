@@ -18,10 +18,11 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.zues.healthok.model.Order;
 import com.example.zues.healthok.model.User;
 import com.example.zues.healthok.util.ServiceHandler;
 import com.example.zues.healthok.util.ServiceURL;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,6 +30,7 @@ import org.json.JSONException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class DoctorVisitHistoryFragment extends Fragment {
@@ -39,14 +41,16 @@ public class DoctorVisitHistoryFragment extends Fragment {
     private HomeActivity homeActivity;
     private ProgressDialog pDialog;
     private String jsonStr;
-    private ArrayList<Order> orders;
+    //    private ArrayList<Order> orders;
+    private ArrayList<CustomDA> customDAs;
     private ImageView prescriptionImageView;
     private String prescriptionImageURL = "";
 
 
     public DoctorVisitHistoryFragment() {
         // Required empty public constructor
-        orders = new ArrayList<>();
+//        orders = new ArrayList<>();
+        customDAs = new ArrayList<>();
     }
 
     @Override
@@ -71,26 +75,23 @@ public class DoctorVisitHistoryFragment extends Fragment {
         TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
         SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
 
-        for (int i = 0; i < orders.size(); i++) {
-            Order order = orders.get(i);
-            if (order == null)
+        for (int i = 0; i < customDAs.size(); i++) {
+            CustomDA customDA = customDAs.get(i);
+            if (customDA == null)
                 continue;
             View view = LayoutInflater.from(getContext()).inflate(R.layout.doctor_visit_history_row, null);
             if (i % 2 != 0)
                 view.setBackgroundDrawable(getContext().getResources().getDrawable(R.drawable.border));
-            ((TextView) view.findViewById(R.id.familyMemberText)).setText("");
-            if (order.getDoctor() != null) {
-                ((TextView) view.findViewById(R.id.doctorNameText)).setText(order.getDoctor().getFirstName()
-                        + " " + order.getDoctor().getLastName());
-                ((TextView) view.findViewById(R.id.specialityText)).setText(order.getDoctor().getSpeciality());
+            ((TextView) view.findViewById(R.id.familyMemberText)).setText(customDA.memberFirstName
+                    + " " + customDA.memberLastName);
+            ((TextView) view.findViewById(R.id.doctorNameText)).setText(customDA.doctorFirstName
+                    + " " + customDA.doctorLastName);
+            ((TextView) view.findViewById(R.id.specialityText)).setText(customDA.doctorSpeciality);
                 ((TextView) view.findViewById(R.id.appointmentDateText)).setText(sdf.format(
-                        order.getDoctorAppointment().getAppointmentDate()));
-            }
-            ((TextView) view.findViewById(R.id.reasonText)).setText(order.getOrderDescription());
-            ((TextView) view.findViewById(R.id.statusText)).setText(order.getOrderStatusType().toString());
-            int prescriptionImageId = 0;
-            if (order.getDoctorAppointment() != null)
-                prescriptionImageId = order.getDoctorAppointment().getPrescriptionImageId();
+                        customDA.orderFulfillDate));
+            ((TextView) view.findViewById(R.id.reasonText)).setText(customDA.orderDescription);
+            ((TextView) view.findViewById(R.id.statusText)).setText(customDA.orderStatus);
+            int prescriptionImageId = customDA.prescriptionImageId;
             if (prescriptionImageId != 0) {
                 prescriptionImageView = inflate.findViewById(R.id.prescriptionImageView);
                 prescriptionImageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -159,11 +160,15 @@ public class DoctorVisitHistoryFragment extends Fragment {
                     String jstr = null;
                     try {
                         jstr = result.getJSONObject(i).toString();
+                        Log.d("jstr", jstr);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    Order order = Order.fromJSON(jstr);
-                    orders.add(order);
+                    CustomDA customDA = new CustomDA();
+                    customDA = customDA.fromJson(jstr);
+//                    Order order = Order.fromJSON(jstr);
+//                    orders.add(order);
+                    customDAs.add(customDA);
                 }
                 showOrders();
 
@@ -209,8 +214,34 @@ public class DoctorVisitHistoryFragment extends Fragment {
         protected void onPostExecute(Bitmap result) {
             // Set the bitmap into ImageView
             prescriptionImageView.setImageBitmap(result);
+            prescriptionImageView.setVisibility(View.VISIBLE);
             // Close progressdialog
             pDialog.dismiss();
+        }
+    }
+
+    class CustomDA {
+        public String memberFirstName;
+        public String memberLastName;
+        public String doctorFirstName;
+        public String doctorLastName;
+        public String doctorSpeciality;
+        public Date orderFulfillDate;
+        public String orderDescription;
+        public String orderStatus;
+        public int prescriptionImageId;
+
+        public CustomDA fromJson(String jsonString) {
+            CustomDA customDA = null;
+            Gson gson = new GsonBuilder().setDateFormat(
+                    "yyyy-MM-dd'T'HH:mm:ssZ").create();
+            try {
+                customDA = gson.fromJson(jsonString, CustomDA.class);
+                return customDA;
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            return customDA;
         }
     }
 }

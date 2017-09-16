@@ -21,6 +21,7 @@ public class DoctorAppointment extends OrderBase {
         this.doctorAppointmentId = doctorAppointmentId;
     }
 
+
     /*
         public int getOrderId() {
             return orderId;

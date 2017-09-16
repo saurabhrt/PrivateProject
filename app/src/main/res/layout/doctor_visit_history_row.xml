@@ -59,6 +59,6 @@
         android:background="@drawable/border"
         android:gravity="center_horizontal"
         android:padding="@dimen/table_cell_padding"
-        android:visibility="invisible"/>
+        android:visibility="gone"/>
 
 </TableRow>

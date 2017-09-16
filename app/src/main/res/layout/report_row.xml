@@ -42,7 +42,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/border"
         android:gravity="center_horizontal"
-        android:padding="@dimen/table_cell_padding"/>
+        android:padding="@dimen/table_cell_padding"
+        android:visibility="gone"/>
 
     <ImageView
         android:id="@+id/testReportImageView"
@@ -50,6 +51,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/border"
         android:gravity="center_horizontal"
-        android:padding="@dimen/table_cell_padding"/>
+        android:padding="@dimen/table_cell_padding"
+        android:visibility="gone"/>
 
 </TableRow>

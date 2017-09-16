@@ -24,6 +24,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -80,8 +81,11 @@ public class MyProfileFragment extends Fragment {
     }
 
     public void showProfile() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
+
         ((TextView) inflate.findViewById(R.id.nameTextView)).setText(userFull.getFirstName() + " " + userFull.getLastName());
         ((TextView) inflate.findViewById(R.id.regNoTextView)).setText(userFull.getRegistrationNumber());
+        ((TextView) inflate.findViewById(R.id.regDateTextView)).setText(sdf.format(userFull.getRegistrationDate()));
         ((TextView) inflate.findViewById(R.id.emailTextView)).setText(userFull.getEmailId());
         ((TextView) inflate.findViewById(R.id.mobileNoTextView)).setText(userFull.getMobile());
         ((TextView) inflate.findViewById(R.id.membershipTypeTextView)).setText(userFull.getMembershipTypeId().toString());
@@ -93,10 +97,10 @@ public class MyProfileFragment extends Fragment {
                 str += ", ";
         }
         ((TextView) inflate.findViewById(R.id.addPhoneTextView)).setText(str);
-
-
-        String address = userFull.getAddressLine1() + ", " + userFull.getAddressLine2() +
-                " Gorakhpur, " + userFull.getPinCode();
+        String address = "Gorakhpur";
+        if (userFull.getAddressLine1() != "")
+            address = userFull.getAddressLine1() + ", " + userFull.getAddressLine2() +
+                    ", Gorakhpur, " + userFull.getPinCode();
         ((TextView) inflate.findViewById(R.id.addressTextView)).setText(address);
     }
 
