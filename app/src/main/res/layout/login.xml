@@ -39,7 +39,7 @@
             android:ems="1"
             android:hint="Username : Email or Phone Number"
             android:inputType="textEmailAddress"
-            android:text="test" />
+            android:text=""/>
 
         <EditText
             android:id="@+id/pswd"
@@ -52,7 +52,7 @@
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword"
-            android:text="test" />
+            android:text=""/>
 
         <Button
             android:id="@+id/signin"

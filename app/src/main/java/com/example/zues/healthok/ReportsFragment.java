@@ -125,7 +125,7 @@ public class ReportsFragment extends Fragment {
         protected Void doInBackground(Void... arg0) {
             // Creating service handler class instance
             ServiceHandler sh = new ServiceHandler();
-            String url = ServiceURL.UserAppointmentsPath + user.getUserId();
+            String url = ServiceURL.reportsPath + user.getUserId();
             // Making a request to url and getting response
 
             jsonStr = sh.makeServiceCall(url, ServiceHandler.GET);
@@ -158,6 +158,7 @@ public class ReportsFragment extends Fragment {
                     String jstr = null;
                     try {
                         jstr = result.getJSONObject(i).toString();
+                        Log.d("jstr", jstr);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -215,10 +216,14 @@ public class ReportsFragment extends Fragment {
         @Override
         protected void onPostExecute(Bitmap result[]) {
             // Set the bitmap into ImageView
-            if (prescriptionImageURL != "")
+            if (prescriptionImageURL != "") {
                 prescriptionImageView.setImageBitmap(result[0]);
-            if (testReportImageURL != "")
+                prescriptionImageView.setVisibility(View.VISIBLE);
+            }
+            if (testReportImageURL != "") {
                 testReportImageView.setImageBitmap(result[0]);
+                testReportImageView.setVisibility(View.VISIBLE);
+            }
             // Close progressdialog
             pDialog.dismiss();
         }

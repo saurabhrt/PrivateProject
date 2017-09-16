@@ -27,7 +27,6 @@ import com.google.gson.JsonParser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -152,58 +151,8 @@ public class BookAppointmentFragment extends Fragment {
                     JSONArray json=new JSONArray(jsonStr);
                     listresult.clear();
                     for(int i=0;i<json.length();i++) {
-                        Doctor doctordata = new Doctor();
-                        JSONObject obj=json.getJSONObject(i);
-                        if(obj.has("doctorImageId"))
-                            doctordata.setDoctorImageid(obj.getInt("doctorImageId"));
-                        else
-                        {
-                            doctordata.setDoctorImageid(R.drawable.doc);
-                        }
-                        if(obj.has("firstName"))
-                        {
-                            doctordata.setFirstName(obj.getString("firstName"));
-                        }
-
-                        if(obj.has("lastName"))
-                            doctordata.setLastName(obj.getString("lastName"));
-                        if(obj.has("doctorId"))
-                            doctordata.setDoctorId(obj.getInt("doctorId"));
-                        if(obj.has("speciality"))
-                            doctordata.setSpeciality(obj.getString("speciality"));
-                        if(obj.has("fees"))
-                            doctordata.setFees(obj.getInt("fees"));
-
-                        if(obj.has("clinicTiming"))
-                        {
-                            doctordata.setClinicTiming(obj.getString("clinicTiming"));
-                        }
-                        else
-                            doctordata.setClinicTiming("4 pm");
-
-                        if(obj.has("addressLine1"))
-                            doctordata.setAddressLine1(obj.getString("addressLine1"));
-                        if(obj.has("addressLine2"))
-                            doctordata.setAddressLine2(obj.getString("addressLine2"));
-                        else
-                            doctordata.setAddressLine2("");
-                        if(obj.has("addressLine3"))
-                            doctordata.setAddressLine3(obj.getString("addressLine3"));
-                        else
-                            doctordata.setAddressLine3("");
-
-
-/*
-                        for(int j=0;j<listresult.size();j++)
-                        {  int k= (listresult.get(j).getDoctorId());
-                            int p=doctordata.getDoctorId();
-                            if(k==p)
-                                matchfound = "Y";
-                        }
-                        if(matchfound=="N")
-                            listresult.add(doctordata);
-*/
-                        listresult.add(doctordata);
+                        Doctor doctor = Doctor.fromJSON(json.getJSONObject(i).toString());
+                        listresult.add(doctor);
                     }
 
                 } catch (JSONException e) {
@@ -211,7 +160,6 @@ public class BookAppointmentFragment extends Fragment {
                     return "Exception Caught";
                 }
             }
-
             this.textSearch = strings[0];
             return "OK";
 
@@ -240,18 +188,18 @@ public class BookAppointmentFragment extends Fragment {
     // Adapter class
     public class SearchResultsAdapter extends BaseAdapter
     {
-        ArrayList<Doctor> doctor_detail=new ArrayList<>();
+        ArrayList<Doctor> doctors = new ArrayList<>();
         int count;
         Context context;
         Bitmap bitmap;
         private LayoutInflater layoutInflater;
 
 
-        public SearchResultsAdapter(Context context, ArrayList<Doctor> doctor_detail)
+        public SearchResultsAdapter(Context context, ArrayList<Doctor> doctors)
         {
             layoutInflater = LayoutInflater.from(context);
-            this.doctor_detail=doctor_detail;
-            count=doctor_detail.size();
+            this.doctors = doctors;
+            count = doctors.size();
             this.context=context;
         }
 
@@ -262,7 +210,7 @@ public class BookAppointmentFragment extends Fragment {
 
         @Override
         public Object getItem(int i) {
-            return doctor_detail.get(i);
+            return doctors.get(i);
         }
 
         @Override
@@ -286,14 +234,14 @@ public class BookAppointmentFragment extends Fragment {
             {
                 viewholder = (Viewholder) view.getTag();
             }
-            if (doctor_detail.size() > 0) {
-                Doctor doctordata = doctor_detail.get(i);
-                viewholder.firstname.setText("Dr. " + doctordata.getFirstName() + " " + doctordata.getLastName());
-                viewholder.speciality.setText(doctordata.getSpeciality());
+            if (doctors.size() > 0) {
+                Doctor doctor = doctors.get(i);
+                viewholder.firstname.setText("Dr. " + doctor.getFirstName() + " " + doctor.getLastName());
+                viewholder.speciality.setText(doctor.getSpeciality());
 
-                if (doctordata.getDoctorImageid() > 0) {
+                if (doctor.getDoctorImageid() > 0) {
                     // Loading image using Glide library
-                    Glide.with(context).load(ServiceURL.ImageDisplayPath + doctordata.getDoctorImageid())
+                    Glide.with(context).load(ServiceURL.ImageDisplayPath + doctor.getDoctorImageid())
                             .placeholder(R.drawable.doc)
                             .thumbnail(0.5f)
                             .crossFade()

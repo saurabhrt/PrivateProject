@@ -21,6 +21,8 @@ public class ServiceURL {
     public static String PrescriptionUploadPath = "files/uploadprescription";
     public static String SearchDoctor = "doctor/search/";
     public static String DocterImage = "files/image/";
+    public static String favDoctors = "doctor/user/";
+    public static String reportsPath = "ordermanagement/getlabtests/";
 
     /* From website
     doctorSearchPath: "doctor/search/",
@@ -30,7 +32,6 @@ public class ServiceURL {
     authenticateUrl: "EmailRegister/Check",
     ordersPath: "ordermanagement/getuserorders/",
     prescriptionUploadPath: "files/uploadprescription",
-    reportsPath: "ordermanagement/getlabtests/",
     quickRegistrationPath: "EmailRegistration/access",
     imageDisplayPath : "files/image/",
     authService:"auth/",
