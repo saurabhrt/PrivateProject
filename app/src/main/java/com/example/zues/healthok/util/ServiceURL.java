@@ -4,7 +4,7 @@ package com.example.zues.healthok.util;
  * Created by Abhay-Jaiswal on 3/20/2016.
  */
 public class ServiceURL {
-    public static String Base = "http://webapp-hok.a3c1.starter-us-west-1.openshiftapps.com/healthokapp/rest/";
+    public static String Base = "http://webapp-hok.193b.starter-ca-central-1.openshiftapps.com/healthokapp/rest/";
 
     //    public static String Base = "http://www.health-ok.in/healthokapp/rest/";
     //    public static String Base = "http://app-myhealthok.rhcloud.com/healthokapp/rest/";
